@@ -52,6 +52,7 @@ private:
     static NAN_METHOD(CreateAtomicRMW);
     static NAN_METHOD(CreateBitCast);
     static NAN_METHOD(CreateBr);
+    static NAN_METHOD(CreateIndirectBr);
     static NAN_METHOD(CreateCall);
     static NAN_METHOD(CreateCondBr);
     static NAN_METHOD(CreateExtractValue);

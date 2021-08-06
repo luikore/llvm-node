@@ -77,6 +77,7 @@ NAN_MODULE_INIT(IRBuilderWrapper::Init) {
     Nan::SetPrototypeMethod(functionTemplate, "createAtomicRMW", IRBuilderWrapper::CreateAtomicRMW);
     Nan::SetPrototypeMethod(functionTemplate, "createBitCast", IRBuilderWrapper::ConvertOperation<&llvm::IRBuilder<>::CreateBitCast>);
     Nan::SetPrototypeMethod(functionTemplate, "createBr", IRBuilderWrapper::CreateBr);
+    Nan::SetPrototypeMethod(functionTemplate, "createIndirectBr", IRBuilderWrapper::CreateIndirectBr);
     Nan::SetPrototypeMethod(functionTemplate, "createCall", IRBuilderWrapper::CreateCall);
     Nan::SetPrototypeMethod(functionTemplate, "createCondBr", IRBuilderWrapper::CreateCondBr);
     Nan::SetPrototypeMethod(functionTemplate, "createExtractValue", IRBuilderWrapper::CreateExtractValue);
@@ -693,6 +694,19 @@ NAN_METHOD(IRBuilderWrapper::CreateBr) {
     auto* basicBlock = BasicBlockWrapper::FromValue(info[0])->getBasicBlock();
     auto* builder = IRBuilderWrapper::FromValue(info.Holder());
     auto* branchInst = builder->irBuilder.CreateBr(basicBlock);
+
+    info.GetReturnValue().Set(ValueWrapper::of(branchInst));
+}
+
+NAN_METHOD(IRBuilderWrapper::CreateIndirectBr) {
+    if (info.Length() != 2 || !ValueWrapper::isInstance(info[0]) || !info[1]->IsNumber()) {
+        return Nan::ThrowTypeError("createIndirectBr needs to be called with: addr: llvm.Value, numDests: number");
+    }
+
+    auto* value = ValueWrapper::FromValue(info[0])->getValue();
+    uint32_t numDests = Nan::To<uint32_t>(info[1]).FromJust();
+    auto* builder = IRBuilderWrapper::FromValue(info.Holder());
+    auto* branchInst = builder->irBuilder.CreateIndirectBr(value, numDests);
 
     info.GetReturnValue().Set(ValueWrapper::of(branchInst));
 }
