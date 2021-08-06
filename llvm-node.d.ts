@@ -169,6 +169,10 @@ declare namespace llvm {
     getTerminator(): Value | undefined;
   }
 
+  class IndirectBrInst extends Value {
+    addDestination(basicBlock: BasicBlock): void;
+  }
+
   class Constant extends Value {
     static getNullValue(type: Type): Constant;
 
@@ -555,6 +559,8 @@ declare namespace llvm {
     createBitCast(value: Value, destType: Type, name?: string): Value;
 
     createBr(basicBlock: BasicBlock): Value;
+
+    createIndirectBr(addr: Value, numDests: number): IndirectBrInst;
 
     /**
      * @deprecated
