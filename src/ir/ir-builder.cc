@@ -76,6 +76,7 @@ NAN_MODULE_INIT(IRBuilderWrapper::Init) {
     Nan::SetPrototypeMethod(functionTemplate, "createAShr", &NANBinaryOperation<&ToBinaryOp<&llvm::IRBuilder<>::CreateAShr>>);
     Nan::SetPrototypeMethod(functionTemplate, "createAtomicRMW", IRBuilderWrapper::CreateAtomicRMW);
     Nan::SetPrototypeMethod(functionTemplate, "createBitCast", IRBuilderWrapper::ConvertOperation<&llvm::IRBuilder<>::CreateBitCast>);
+    Nan::SetPrototypeMethod(functionTemplate, "createPointerCast", IRBuilderWrapper::ConvertOperation<&llvm::IRBuilder<>::CreatePointerCast>);
     Nan::SetPrototypeMethod(functionTemplate, "createBr", IRBuilderWrapper::CreateBr);
     Nan::SetPrototypeMethod(functionTemplate, "createIndirectBr", IRBuilderWrapper::CreateIndirectBr);
     Nan::SetPrototypeMethod(functionTemplate, "createCall", IRBuilderWrapper::CreateCall);

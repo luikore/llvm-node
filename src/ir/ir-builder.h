@@ -51,6 +51,7 @@ private:
     static NAN_METHOD(CreateAShr);
     static NAN_METHOD(CreateAtomicRMW);
     static NAN_METHOD(CreateBitCast);
+    static NAN_METHOD(CreatePointerCast);
     static NAN_METHOD(CreateBr);
     static NAN_METHOD(CreateIndirectBr);
     static NAN_METHOD(CreateCall);

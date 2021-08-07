@@ -564,6 +564,8 @@ declare namespace llvm {
 
     createBitCast(value: Value, destType: Type, name?: string): Value;
 
+    createPointerCast(value: Value, destType: Type, name?: string): Value;
+
     createBr(basicBlock: BasicBlock): Value;
 
     createIndirectBr(addr: Value, numDests: number): IndirectBrInst;

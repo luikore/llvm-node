@@ -115,6 +115,20 @@ describe("IRBuilder", () => {
     );
   });
 
+  test("createPointerCast returns a value", () => {
+    const { builder, context } = createBuilderWithBlock();
+
+    const cast = builder.createPointerCast(
+      llvm.ConstantPointerNull.get(llvm.Type.getInt32PtrTy(context)),
+      llvm.Type.getInt8PtrTy(context)
+    );
+
+    expect(cast).toBeInstanceOf(llvm.Value);
+    expect(cast.type).toEqual(
+      llvm.Type.getInt8PtrTy(context)
+    );
+  });
+
   test("createBr returns a value", () => {
     const { builder, context, fn } = createBuilderWithBlock();
 
