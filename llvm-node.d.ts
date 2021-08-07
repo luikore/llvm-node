@@ -224,6 +224,12 @@ declare namespace llvm {
     private constructor();
   }
 
+  class ConstantBasicBlockAddress extends Constant {
+    static get(basicBlock: BasicBlock): ConstantBasicBlockAddress;
+
+    private constructor();
+  }
+
   class ConstantArray extends Constant {
     static get(arrayType: ArrayType, elements: Constant[]): Constant;
   }
