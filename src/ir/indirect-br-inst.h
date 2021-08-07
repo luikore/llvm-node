@@ -1,7 +1,3 @@
-//
-// Created by Micha Reiser on 13.03.17.
-//
-
 #ifndef LLVM_NODE_INDIRECT_BR_INST_H
 #define LLVM_NODE_INDIRECT_BR_INST_H
 

@@ -1,7 +1,3 @@
-//
-// Created by Micha Reiser on 13.03.17.
-//
-
 #include "indirect-br-inst.h"
 #include "basic-block.h"
 
