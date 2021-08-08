@@ -15,6 +15,22 @@ NAN_MODULE_INIT(IndirectBrInstWrapper::Init) {
     Nan::Set(target, Nan::New("IndirectBrInst").ToLocalChecked(), Nan::GetFunction(tpl).ToLocalChecked());
 }
 
+NAN_METHOD(IndirectBrInstWrapper::New) {
+    if (!info.IsConstructCall()) {
+        return Nan::ThrowTypeError("Class Constructor IndirectBrInst cannot be invoked without new");
+    }
+
+    if (info.Length() != 1 || !info[0]->IsExternal()) {
+        return Nan::ThrowTypeError("IndirectBrInst constructor needs to be called with: indirectBrInst: external");
+    }
+
+    auto* indirectBrInst = static_cast<llvm::IndirectBrInst*>(v8::External::Cast(*info[0])->Value());
+    auto* wrapper = new IndirectBrInstWrapper { indirectBrInst };
+    wrapper->Wrap(info.This());
+
+    info.GetReturnValue().Set(info.This());
+}
+
 // v8::Local<v8::Object> IndirectBrInstWrapper::of(llvm::IndirectBrInst* inst) {
 //     Nan::EscapableHandleScope escapeScope {};
 //     auto constructorFunction = Nan::GetFunction(Nan::New(functionTemplate())).ToLocalChecked();
