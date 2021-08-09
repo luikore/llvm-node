@@ -27,6 +27,7 @@
 #include "constant-fp.h"
 #include "constant-int.h"
 #include "constant-pointer-null.h"
+#include "constant-block-address.h"
 #include "global-variable.h"
 #include "unnamed-addr.h"
 #include "constant-struct.h"
@@ -54,6 +55,7 @@ NAN_MODULE_INIT(InitIR) {
     ConstantFPWrapper::Init(target);
     ConstantIntWrapper::Init(target);
     ConstantPointerNullWrapper::Init(target);
+    ConstantBlockAddressWrapper::Init(target);
     DataLayoutWrapper::Init(target);
     FunctionWrapper::Init(target);
     FunctionTypeWrapper::Init(target);
