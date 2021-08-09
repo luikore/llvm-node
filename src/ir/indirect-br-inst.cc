@@ -2,15 +2,7 @@
 #include "basic-block.h"
 
 NAN_MODULE_INIT(IndirectBrInstWrapper::Init) {
-    v8::Local<v8::FunctionTemplate> tpl = Nan::New<v8::FunctionTemplate>(New);
-
-    tpl->SetClassName(Nan::New("IndirectBrInst").ToLocalChecked());
-    tpl->InstanceTemplate()->SetInternalFieldCount(1);
-    Nan::SetPrototypeMethod(tpl, "addDestination", IndirectBrInstWrapper::addDestination);
-
-    indirectBrInstTemplate().Reset(tpl);
-
-    Nan::Set(target, Nan::New("IndirectBrInst").ToLocalChecked(), Nan::GetFunction(tpl).ToLocalChecked());
+    Nan::Set(target, Nan::New("IndirectBrInst").ToLocalChecked(), Nan::GetFunction(indirectBrInstTemplate()).ToLocalChecked());
 }
 
 NAN_METHOD(IndirectBrInstWrapper::New) {
