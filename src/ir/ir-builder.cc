@@ -10,6 +10,7 @@
 #include "phi-node.h"
 #include "alloca-inst.h"
 #include "call-inst.h"
+#include "indirect-br-inst.h"
 #include "../util/array.h"
 #include "function-type.h"
 
@@ -709,7 +710,7 @@ NAN_METHOD(IRBuilderWrapper::CreateIndirectBr) {
     auto* builder = IRBuilderWrapper::FromValue(info.Holder());
     auto* branchInst = builder->irBuilder.CreateIndirectBr(value, numDests);
 
-    info.GetReturnValue().Set(ValueWrapper::of(branchInst));
+    info.GetReturnValue().Set(IndirectBrInstWrapper::of(branchInst));
 }
 
 NAN_METHOD(IRBuilderWrapper::CreateCondBr) {

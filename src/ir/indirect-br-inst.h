@@ -8,6 +8,7 @@
 class IndirectBrInstWrapper: public ValueWrapper, public FromValueMixin<IndirectBrInstWrapper> {
 public:
     static NAN_MODULE_INIT(Init);
+    static v8::Local<v8::Object> of(llvm::IndirectBrInst* indirectBrInst);
     // static v8::Local<v8::Object> of(llvm::IndirectBrInst* indirectBrInst);
     static bool isInstance(v8::Local<v8::Value> value);
     using FromValueMixin<IndirectBrInstWrapper>::FromValue;
@@ -16,7 +17,7 @@ public:
 private:
     static NAN_METHOD(New);
     static NAN_METHOD(addDestination);
-    static Nan::Persistent<v8::FunctionTemplate> functionTemplate;
+    static Nan::Persistent<v8::FunctionTemplate>& indirectBrInstTemplate();
 
     explicit IndirectBrInstWrapper(llvm::IndirectBrInst* value) : ValueWrapper { value } {}
 };
