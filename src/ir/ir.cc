@@ -22,6 +22,7 @@
 #include "integer-type.h"
 #include "calling-conv.h"
 #include "call-inst.h"
+#include "indirect-br-inst.h"
 #include "struct-type.h"
 #include "constant-data-array.h"
 #include "constant-fp.h"
@@ -49,6 +50,7 @@ NAN_MODULE_INIT(InitIR) {
     InitCallingConv(target);
     InitUnnamedAddr(target);
     CallInstWrapper::Init(target);
+    IndirectBrInstWrapper::Init(target);
     ConstantWrapper::Init(target);
     ConstantArrayWrapper::Init(target);
     ConstantDataArrayWrapper::Init(target);
