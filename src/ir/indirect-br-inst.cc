@@ -1,5 +1,6 @@
 #include "indirect-br-inst.h"
 #include "basic-block.h"
+#include "nan.h"
 
 NAN_MODULE_INIT(IndirectBrInstWrapper::Init) {
     auto indirectBrInst = Nan::GetFunction(Nan::New(indirectBrInstTemplate())).ToLocalChecked();
@@ -57,8 +58,9 @@ Nan::Persistent<v8::FunctionTemplate>& IndirectBrInstWrapper::indirectBrInstTemp
         auto localTemplate = Nan::New<v8::FunctionTemplate>(IndirectBrInstWrapper::New);
         localTemplate->SetClassName(Nan::New("IndirectBrInst").ToLocalChecked());
         localTemplate->InstanceTemplate()->SetInternalFieldCount(1);
+        localTemplate->Inherit(Nan::New(valueTemplate()));
 
-        Nan::SetMethod(localTemplate, "addDestination", IndirectBrInstWrapper::addDestination);
+        Nan::SetPrototypeMethod(localTemplate, "addDestination", IndirectBrInstWrapper::addDestination);
 
         functionTemplate.Reset(localTemplate);
     }
