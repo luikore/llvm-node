@@ -41,7 +41,7 @@ llvm::IndirectBrInst* IndirectBrInstWrapper::getIndirectBrInst() {
 }
 
 NAN_METHOD(IndirectBrInstWrapper::addDestination) {
-    if (info.Length() != 1 || !info[0]->IsUint32()) {
+    if (info.Length() != 1 || !BasicBlockWrapper::isInstance(info[0])) {
         return Nan::ThrowTypeError("addDestination needs to be called with: basicBlock: BasicBlock");
     }
 
