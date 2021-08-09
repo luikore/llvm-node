@@ -224,8 +224,8 @@ declare namespace llvm {
     private constructor();
   }
 
-  class ConstantBasicBlockAddress extends Constant {
-    static get(basicBlock: BasicBlock): ConstantBasicBlockAddress;
+  class ConstantBlockAddress extends Constant {
+    static get(basicBlock: BasicBlock): ConstantBlockAddress;
 
     private constructor();
   }
