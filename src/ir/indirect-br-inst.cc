@@ -2,7 +2,8 @@
 #include "basic-block.h"
 
 NAN_MODULE_INIT(IndirectBrInstWrapper::Init) {
-    Nan::Set(target, Nan::New("IndirectBrInst").ToLocalChecked(), Nan::GetFunction(indirectBrInstTemplate()).ToLocalChecked());
+    auto indirectBrInst = Nan::GetFunction(Nan::New(indirectBrInstTemplate())).ToLocalChecked();
+    Nan::Set(target, Nan::New("IndirectBrInst").ToLocalChecked(), indirectBrInst);
 }
 
 NAN_METHOD(IndirectBrInstWrapper::New) {
